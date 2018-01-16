@@ -1,0 +1,52 @@
+﻿@model IEnumerable<TimeManager.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Ekip";
+}
+
+<h2>Ekip</h2>
+
+<p>
+    <a asp-action="Register" asp-controller="Account">Yeni Ekle</a>
+</p>
+<table class="table table-striped table-hover dt-responsive">
+    <thead>
+        <tr>
+            <th class="all">
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th class="all">Toplam Görev Sayısı</th>
+            <th class="all">Tamamladığı Görev Sayısı</th>
+            <th class="all">Toplam Zaman Harcaması</th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>@item.TaskCount</td>
+            <td>@item.CompletedTaskCount</td>
+            <td>@item.TotalTimeSpent saat</td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -22,5 +22,13 @@ namespace TimeManager.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<TimeManager.Models.Project> Project { get; set; }
+
+        public DbSet<TimeManager.Models.Task> Task { get; set; }
+
+        public DbSet<TimeManager.Models.TimeSpending> TimeSpending { get; set; }
+
+        public DbSet<TimeManager.Models.ApplicationUser> ApplicationUser { get; set; }
     }
 }

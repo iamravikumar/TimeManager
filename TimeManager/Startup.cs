@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using TimeManager.Data;
 using TimeManager.Models;
 using TimeManager.Services;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 namespace TimeManager
 {
@@ -36,12 +38,27 @@ namespace TimeManager
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            services.AddMvc(config =>
+            {
+                config.ModelBinderProviders.Insert(0, new InvariantDecimalModelBinderProvider());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(new CultureInfo("tr-TR")),
+                SupportedCultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                },
+                SupportedUICultures = new List<CultureInfo>
+                {
+                    new CultureInfo("tr-TR")
+                }
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

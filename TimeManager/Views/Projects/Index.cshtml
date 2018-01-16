@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TimeManager.Models.Project>
+
+@{
+    ViewData["Title"] = "Projeler";
+}
+
+<h2>Projeler</h2>
+
+<p>
+    <a asp-action="Create">Yeni Ekle</a>
+</p>
+<table class="table dt-responsive">
+    <thead>
+        <tr>
+            <th class="small text-nowrap">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Managers)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.BussinessAnalyists)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Developers)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th class="text-nowrap">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th class="text-nowrap">
+                Toplam Süre
+            </th>
+            <th class="all text-nowrap"></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Managers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BussinessAnalyists)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Developers)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @item.TotalTimeSpent saat
+            </td>
+            <td class="text-nowrap">
+                <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Ayrıntılar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
